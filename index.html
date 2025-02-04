@@ -1,159 +1,194 @@
-   
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>핫라이트 - 실시간 핫 뉴스</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
     <style>
-        /* 전체 스타일 */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #FFF7D6; /* 연한 노랑 */
-        }
 
-        /* 고정 헤더 */
-        header {
-            background-color: #FFD6E0; /* 연한 핑크 */
-            color: #333;
-            text-align: center;
-            padding: 15px;
-            font-size: 24px;
-            font-weight: bold;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
+/* 전체 스타일 */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF; /* 화이트 배경 */
+    color: #333333; /* 가독성 좋은 진한 회색 */
+}
 
-        /* 네비게이션 바 */
-        nav {
-            position: fixed;
-            top: 60px;
-            width: 100%;
-            background-color: #E0D6FF; /* 연한 연보라 */
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            z-index: 999;
-        }
+/* 헤더 스타일 */
+header {
+    background-color: #ffffff; /* 하얀색 배경 */
+    padding: 15px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between; /* 왼쪽 로고, 오른쪽 카테고리 정렬 */
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* 로고 */
+.logo {
+    width: 120px; /* 로고 크기 조절 */
+}
+
+/* 네비게이션 바 */
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: #FF4081; /* 핫핑크 텍스트 */
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* 주요 뉴스 섹션 */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #FFFFFF;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 26px;
+    color: #FF4081; /* 핫핑크 */
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* 카테고리별 뉴스 정렬 (세로 배치) */
+.news-section {
+    margin-bottom: 30px;
+}
+
+/* 카테고리 제목 */
+.category-title {
+    font-size: 22px;
+    color: #FF4081; /* 핫핑크 */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* 카테고리별 뉴스 리스트 (가로 정렬) */
+.news-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* 개별 뉴스 카드 */
+.news-card {
+    background: #F8F8F8;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    width: 200px;
+}
+
+/* 반응형 (모바일) */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav {
+        margin-top: 10px;
+    }
+
+    .news-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .news-card {
+        width: 80%; /* 모바일에서 카드 크기 줄이기 */
+    }
+
+    .logo {
+        width: 100px; /* 모바일에서 로고 크기 줄이기 */
+    }
+}
 
 
-
-
-     nav a {
-            color: #333;
-            text-decoration: none;
-            font-size: 16px;
-            padding: 8px 15px;
-            background-color: #D6FFD6; /* 연한 연두 */
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            background-color: #B8E6B8; /* 연두색 더 진하게 */
-        }
-
-        /* 컨텐츠 영역 */
-        .container {
-            max-width: 900px;
-            margin: 120px auto 20px; /* 헤더+네비 높이만큼 여백 */
-            padding: 20px;
-            background: white;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        /* 주요 뉴스 섹션 */
-        .headline {
-            background-color: #FFD6E0; /* 연한 핑크 */
-            padding: 15px;
-            border-left: 5px solid #FF82A9; /* 포인트 컬러 */
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-
-        .headline h2 {
-            margin: 0;
-            font-size: 22px;
-            color: #CC3366; /* 진한 핑크 */
-        }
-
-        .headline p {
-            margin: 5px 0 0;
-            color: #333;
-        }
-
-        /* 기사 스타일 */
-        .article {
-            border-bottom: 1px solid #ddd;
-            padding: 15px 0;
-        }
-
-        .article h2 {
-            margin: 0;
-            color: #333;
-        }
-
-        .article p {
-            color: #555;
-        }
-
-        .article small {
-            color: #888;
-        }
-
-        /* 버튼 스타일 */
-        .add-article {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #E0D6FF; /* 연한 연보라 */
-            color: #333;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            text-align: center;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-
-        .add-article:hover {
-            background-color: #C6B8FF; /* 진한 연보라 */
-        }
     </style>
 </head>
 <body>
 
-    <header>🔥 핫라이트 (Hotlight)</header>
+    <!-- 헤더 (로고 + 카테고리 메뉴) -->
+    <header>
+        <div class="header-container">
+            <img src="hotlight-logo.png" alt="Hotlight Logo" class="logo"> <!-- 네온 로고 -->
+            <nav>
+                <a href="hot_issue.html">🚀 핫이슈</a>
+                <a href="sns_trend.html">📱 SNS 트렌드</a>
+                <a href="entertainment.html">🎤 연예</a>
+            </nav>
+        </div>
+    </header>
 
-    <nav>
-        <a href="#" onclick="showCategory('핫이슈')">🚀 핫이슈</a>
-        <a href="#" onclick="showCategory('SNS 트렌드')">📱 SNS 트렌드</a>
-        <a href="#" onclick="showCategory('연예')">🎤 연예</a>
-    </nav>
-
+    <!-- 주요 뉴스 섹션 -->
     <div class="container">
-        <!-- 주요 뉴스 (헤드라인) -->
-        <div id="headline-container" class="headline">
-            <h2>🚀 헤드라인 뉴스</h2>
-            <p>최신 뉴스를 빠르게 확인하세요!</p>
+        <h2 class="section-title">🔥 주요 뉴스</h2>
+
+        <!-- 핫이슈 섹션 -->
+        <div class="news-section">
+            <h3 class="category-title">🚀 핫이슈</h3>
+            <div class="news-row">
+                <div class="news-card">🔥 유명 배우 깜짝 결혼 발표!</div>
+                <div class="news-card">🔥 경제 위기 돌파 전략 공개</div>
+                <div class="news-card">🔥 월드컵 출전 확정!</div>
+            </div>
         </div>
 
-        <div id="news-container">
-            <!-- 뉴스 기사가 여기에 추가됨 -->
+        <!-- SNS 트렌드 섹션 -->
+        <div class="news-section">
+            <h3 class="category-title">📱 SNS 트렌드</h3>
+            <div class="news-row">
+                <div class="news-card">💡 100만 뷰 돌파한 화제 영상</div>
+                <div class="news-card">💡 틱톡에서 유행하는 챌린지</div>
+                <div class="news-card">💡 인기 유튜버의 최신 컨텐츠</div>
+            </div>
         </div>
 
-        <button class="add-article" onclick="addArticle()">기사 추가</button>
+        <!-- 연예 섹션 -->
+        <div class="news-section">
+            <h3 class="category-title">🎤 연예</h3>
+            <div class="news-row">
+                <div class="news-card">🎶 대세 아이돌 신곡 발표</div>
+                <div class="news-card">🎬 화제의 드라마 시청률 1위</div>
+                <div class="news-card">🌟 해외 스타의 내한 소식!</div>
+            </div>
+        </div>
+
     </div>
-
+</body>
     <script>
         // 초기 뉴스 데이터
         const newsArticles = [
