@@ -3,205 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>핫라이트 - 실시간 핫 뉴스를 한번에!</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-
+    <title>핫라이트 - 실시간 핫 뉴스</title>
     <style>
+        /* ✅ 전체 스타일 */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F9F9F9;
+            color: #333;
+        }
 
-/* 전체 스타일 */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #FFFFFF; /* 화이트 배경 */
-    color: #333333; /* 가독성 좋은 진한 회색 */
-}
-
-/* 헤더 스타일 */
+   /* ✅ 헤더 스타일 (높이 줄이기) */
 header {
-    background-color: #ffffff; /* 하얀색 배경 */
-    padding: 15px 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+    background-color: white;
+    padding: 10px 15px; /* 기존보다 패딩 줄임 */
+    border-bottom: 1px solid #ddd;
+    height: 50px; /* 높이 조절 */
+    display: flex;
+    align-items: center; /* 내용 가운데 정렬 */
 }
 
+   /* ✅ 헤더 컨테이너 (로고 & 네비게이션) */
 .header-container {
     display: flex;
-    justify-content: space-between; /* 왼쪽 로고, 오른쪽 카테고리 정렬 */
+    justify-content: space-between;
     align-items: center;
     max-width: 1100px;
     margin: 0 auto;
 }
 
-/* 로고 */
+/* ✅ 로고 크기 줄이기 */
 .logo {
-    width: 80px; /* 로고 크기 조절 */
-}
-
-/* 네비게이션 바 */
-nav {
-    display: flex;
-    gap: 20px;
-}
-
-/* 📌 카테고리 클릭 시 이동 효과 */
-nav a {
-    color: #FF4081;
-    text-decoration: none;
-    font-size: 18px;
+    font-size: 20px; /* 기존보다 작게 */
     font-weight: bold;
-    padding: 10px;
-    transition: 0.3s;
+}
+
+ /* ✅ 네비게이션 스타일 (간격 줄이기) */
+nav a {
+    margin-left: 10px; /* 기존보다 좌우 간격 축소 */
+    text-decoration: none;
+    color: #555;
+    font-size: 14px; /* 글씨 크기 조금 줄임 */
 }
 
 nav a:hover {
-    text-decoration: underline;
-    color: #FF0000;
+    color: #FF4081;
 }
-/* 전체 컨테이너 */
+/* ✅ 카테고리 네비게이션 스타일 */
+.category-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 20px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+    overflow-x: auto;
+    border-radius: 20px; 
+    max-width: 1100px;
+    margin: 15px auto 0; 
+}
+
+/* ✅ 기본 상태에서도 hover 스타일 유지 */
+.category-nav a {
+    text-decoration: none;
+    font-size: 14px;
+    color: white; /* 기본적으로 흰색 글씨 */
+    padding: 10px 15px;
+    border-radius: 15px;
+    background: #ff6a9c; /* 기본적으로 핫핑크 배경 */
+    transition: background 0.3s, color 0.3s;
+}
+
+/* ✅ 마우스를 올려도 동일한 스타일 유지 */
+.category-nav a:hover {
+    background: #ff548d; /* 동일한 핫핑크 유지 */
+    color: white; /* 동일한 흰색 유지 */
+}
+
+
+
+/* ✅ 메인 컨테이너 (좌우 정렬 유지) */
 .main-container {
     display: flex;
     max-width: 1100px;
     margin: 40px auto;
     gap: 20px;
 }
-/* 왼쪽 뉴스 리스트 */
-.left-news {
+
+/* ✅ 왼쪽 컬럼을 세로 정렬로 변경 */
+.left-column {
+    display: flex;
+    flex-direction: column;  /* 세로 정렬! */
     width: 65%;
+    gap: 20px;
 }
 
-/* 오른쪽 뉴스 */
+/* ✅ 오른쪽 뉴스 (SNS 트렌드 & 운세) */
 .right-news {
     width: 35%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* 뉴스 제목 */
-.news-content h3 {
-    font-size: 18px;
+/* ✅ 왼쪽 뉴스 박스 */
+.left-news {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 🏷️ 뉴스 제목 (섹션) */
+.section-title {
+    font-size: 20px;
     font-weight: bold;
     color: #333;
-    margin: 0;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ddd;
 }
 
-/* 큰 뉴스 스타일 */
-.big-news {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 15px;
+/* 📰 뉴스 리스트 */
+.news-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
 }
-
-.big-news a {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-}
-
-.big-news img {
-    width: 100%;
-    height: 200px;
+/* 뉴스 썸네일 */
+.news-item img {
+    width: 80px;
+    height: 60px;
     object-fit: cover;
     border-radius: 5px;
 }
 
-.big-news-content {
-    padding-top: 10px;
+
+      /* ✅ "오늘의 운세" 스타일 */
+.today-fortune {
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.big-news-content h3 {
-    font-size: 18px;
+/* ✨ 운세 개별 항목 */
+.fortune-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.fortune-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.fortune-content h3 {
+    font-size: 16px;
     font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
+    margin: 0;
 }
 
-.big-news-content p {
+.fortune-content p {
     font-size: 14px;
     color: #666;
-    margin: 0;
-}
-/* 🏷️ 섹션 제목 스타일 */
-.section-title {
-    font-size: 22px;
-    color: #333;
-    font-weight: bold;
-    padding-bottom: 8px;
-    margin-bottom: 15px;
-    position: relative;
+    margin: 5px 0 0;
 }
 
-/* 🔽 섹션 제목 밑줄 */
-.section-title::after {
-    content: "";
-    display: block;
+
+/* ✅ 링크 스타일 변경 - 파란색 제거 */
+.news-item a, .fortune-item a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 부모 요소 색상 유지 */
+    display: flex; /* 기존 뉴스 스타일 유지 */
+    align-items: center;
+    gap: 15px;
     width: 100%;
-    height: 3px;
-    background: linear-gradient(to right, #FF4081, #FF5733);
-    position: absolute;
-    left: 0;
-    bottom: 0;
+}
+
+/* ✅ 마우스 올리면 부드러운 강조 효과 */
+.news-item a:hover, .fortune-item a:hover {
+    text-decoration: none; /* 밑줄 그대로 제거 */
+    color: #FF4081; /* 핫핑크 색상 강조 */
+    transition: color 0.3s ease-in-out;
 }
 
 
-/* 개별 뉴스 아이템 */
-.news-item {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* 뉴스 이미지 */
-.news-item img {
-    width: 120px;
-    height: 80px;
-    object-fit: cover;
-    margin-right: 15px;
-    border-radius: 5px;
-}
-
-
-/* 뉴스 리스트 스타일 */
-.news-list {
-    max-width: 800px;
-    margin: 20px auto;
-}
-
-.news-item {
-    display: flex;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #ddd;
-}
-
-.news-item img {
-    width: 120px;
-    height: 80px;
-    object-fit: cover;
-    margin-right: 15px;
-}
-
-.news-content h3 {
-    font-size: 18px;
-    color: #333;
-    margin: 0;
-}
-
-/* 반응형 */
+    /* ✅ 반응형 */
 @media (max-width: 768px) {
-    .news-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .news-item img {
-        width: 100%;
-        height: auto;
-        margin-bottom: 10px;
-    }
     .main-container {
         flex-direction: column;
     }
@@ -210,199 +209,157 @@ nav a:hover {
         width: 100%;
     }
 
-    .big-news img {
-        height: 180px;
+    .fortune-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .fortune-item img {
+        width: 100%;
+        height: auto;
     }
 }
-
-
-/* 반응형 (모바일) */
-@media (max-width: 768px) {
-    .header-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav {
-        margin-top: 10px;
-    }
-
-    .news-row {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .news-card {
-        width: 80%; /* 모바일에서 카드 크기 줄이기 */
-    }
-
-    .logo {
-        width: 100px; /* 모바일에서 로고 크기 줄이기 */
-    }
-   
-}
-
-
     </style>
 </head>
 <body>
 
-    <!-- 헤더 (로고 + 카테고리 메뉴) -->
+    <!-- 🏷️ 헤더 -->
     <header>
         <div class="header-container">
-            <img src="hotlight-logo.png" alt="Hotlight Logo" class="logo"> <!-- 네온 로고 -->
+            <h1 class="logo">🔥 핫라이트</h1>
             <nav>
-                <a href="hot_issue.html">🚀 핫이슈</a>
-                <a href="sns_trend.html">📱 SNS 트렌드</a>
-                <a href="entertainment.html">🎤 연예</a>
+                <a href="https://saju-planet.co.kr/">사주플래닛</a>
+
             </nav>
         </div>
     </header>
 
+    <!-- 📌 카테고리 네비게이션 -->
+    <div class="category-nav">
+        <a href="#hot-news">홈</a>
+        <a href="#politics">핫이슈</a>
+        <a href="#climate">SNS트렌드</a>
+        <a href="#society">연예</a>
+        <a href="#economy">날씨</a>
+        <a href="#international">운세</a>
+    </div>
+
+    <!-- 📰 메인 뉴스 레이아웃 -->
     <div class="main-container">
     
-        <!-- 📰 왼쪽 뉴스 리스트 (핫이슈 + 연예 뉴스) -->
-        <div class="left-news">
-            
+        <!-- 📌 왼쪽 뉴스 섹션 (핫이슈 & 연예) -->
+        <div class="left-column">
             <!-- 🔥 핫이슈 -->
-            <div class="news-list">
-                <h2 class="section-title hot-issue" id="hot-issue">🔥 핫이슈</h2>
+            <div class="left-news">
+                <h2 class="section-title">🔥 핫이슈</h2>
+                
                 <div class="news-item">
-                    <img src="news1.jpg" alt="뉴스 이미지">
-                    <div class="news-content">
-                        <h3>‘윤체이탈’ 윤석열…“살인 미수로 끝나면 아무 일 없었던 게 되냐”</h3>
-                    </div>
+                    <a href="hot_issue1.html" target="_blank">
+                        <img src="news1.jpg" alt="핫이슈 뉴스">
+                        <h3>긴급 속보! "우유는 공주" 너무 귀여워</h3>
+                    </a>
                 </div>
     
                 <div class="news-item">
-                    <img src="news2.jpg" alt="뉴스 이미지">
-                    <div class="news-content">
-                        <h3>“순교할 기회 감사”…계엄 ‘수거 대상’ 사제단 신부의 반응</h3>
-                    </div>
+                    <a href="hot_issue2.html" target="_blank">
+                        <img src="news2.jpg" alt="핫이슈 뉴스">
+                        <h3>테스트잇 새로운 에니어그램 테스트 선보여 화제</h3>
+                    </a>
                 </div>
             </div>
     
             <!-- 🎤 연예 뉴스 -->
-            <div class="news-list">
-                <h2 class="section-title entertainment" id="entertainment">🎤 연예 뉴스</h2>
+            <div class="left-news">
+                <h2 class="section-title">🎤 연예 뉴스</h2>
+                
                 <div class="news-item">
-                    <img src="ent1.jpg" alt="연예 뉴스">
-                    <div class="news-content">
-                        <h3>🎶 대세 아이돌 신곡 발표</h3>
-                    </div>
+                    <a href="entertainment1.html" target="_blank">
+                        <img src="ent1.jpg" alt="연예 뉴스">
+                        <h3>🎶 귀여운 우유 신곡 - 왈왈월월 빌보드 1위</h3>
+                    </a>
                 </div>
     
                 <div class="news-item">
-                    <img src="ent2.jpg" alt="연예 뉴스">
-                    <div class="news-content">
-                        <h3>🎬 화제의 드라마 시청률 1위</h3>
-                    </div>
+                    <a href="entertainment2.html" target="_blank">
+                        <img src="ent2.jpg" alt="연예 뉴스">
+                        <h3>🎬 화제의 드라마, 우유는 즐거워 시청률 1위 달성!</h3>
+                    </a>
                 </div>
             </div>
-    
         </div>
-        
-        <!-- 🌍 오른쪽 사이드 뉴스 (SNS 트렌드 + 오늘의 운세) -->
+    
+        <!-- 📌 오른쪽 뉴스 섹션 (SNS 트렌드 & 오늘의 운세) -->
         <div class="right-news">
+            <h2 class="section-title">📢 SNS 트렌드</h2>
+            
+            <div class="news-item">
+                <a href="sns_trend1.html" target="_blank">
+                    <img src="sns1.jpg" alt="SNS 트렌드">
+                    <h3>🔥 테스트플래닛 이대로 무너지는가 미룬이 이후로 무소식</h3>
+                </a>
+            </div>
     
-            <!-- 👍 SNS 트렌드 -->
-            <div class="news-list">
-                <h2 class="section-title sns-trend" id="sns-trend">👍 SNS 트렌드</h2>
-                <div class="big-news">
-                    <a href="article1.html">
-                        <img src="snstrend1.png" alt="SNS 트렌드">
-                        <div class="big-news-content">
-                            <h3>💡 100만 뷰 돌파한 화제 영상</h3>
-                            <p>지금 SNS에서 가장 핫한 영상이 무엇일까?</p>
+            <div class="news-item">
+                <a href="sns_trend2.html" target="_blank">
+                    <img src="sns2.jpg" alt="SNS 트렌드">
+                    <h3>📸 추워서 산책 못간 우유 강아지 화제</h3>
+                </a>
+            </div>
+    
+            <!-- 🏆 "오늘의 운세" -->
+            <div class="today-fortune">
+                <h2 class="section-title">✨ 오늘의 운세</h2>
+    
+                <div class="fortune-item">
+                    <a href="fortune1.html" target="_blank">
+                        <img src="fortune1.jpg" alt="양자리 운세">
+                        <div class="fortune-content">
+                            <h3>🔥 우유자리 - 좋은 기회가 찾아와요!</h3>
+                            <p>오늘은 도전적인 하루! 예상치 못한 기회가 찾아올지도?</p>
                         </div>
                     </a>
                 </div>
     
-                <div class="big-news">
-                    <a href="article2.html">
-                        <img src="snstrend2.jpg" alt="SNS 트렌드">
-                        <div class="big-news-content">
-                            <h3>💡 틱톡에서 유행하는 챌린지</h3>
-                            <p>틱톡에서 새로운 챌린지가 떠오르고 있다!</p>
+                <div class="fortune-item">
+                    <a href="fortune2.html" target="_blank">
+                        <img src="fortune2.jpg" alt="사자자리 운세">
+                        <div class="fortune-content">
+                            <h3>🌟 다영자리 - 주목받는 하루</h3>
+                            <p>모두가 당신을 주목할 시간! 자신감을 가져보세요.</p>
+                        </div>
+                    </a>
+                </div>
+    
+                <div class="fortune-item">
+                    <a href="fortune3.html" target="_blank">
+                        <img src="fortune3.jpg" alt="물고기자리 운세">
+                        <div class="fortune-content">
+                            <h3>🌊 천사자리 - 직감이 빛을 발하는 날</h3>
+                            <p>오늘은 감각을 믿고 행동하세요. 좋은 결과가 있을 거예요.</p>
                         </div>
                     </a>
                 </div>
             </div>
-    
-            <!-- ✨ 오늘의 운세 -->
-            <div class="news-list">
-                <h2 class="section-title today-fortune" id="today-fortune">✨ 오늘의 운세</h2>
-                <div class="big-news">
-                    <a href="article3.html">
-                        <img src="fortune.jpg" alt="오늘의 운세">
-                        <div class="big-news-content">
-                            <h3>🌟 오늘의 운세 확인하기</h3>
-                            <p>오늘의 별자리 운세를 확인해보세요!</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-    
         </div>
     </div>
     
     
-</body>
-    <script>
     
-
-        // 뉴스 표시 함수
-        function displayNews(articles) {
-            const container = document.getElementById("news-container");
-            const headlineContainer = document.getElementById("headline-container");
-            container.innerHTML = ""; // 기존 내용 초기화
-            headlineContainer.innerHTML = `<h2>🚀 헤드라인 뉴스</h2><p>최신 뉴스를 빠르게 확인하세요!</p>`;
-
-            articles.forEach(article => {
-                const articleDiv = document.createElement("div");
-                articleDiv.classList.add("article");
-                articleDiv.innerHTML = `
-                    <h2>${article.title}</h2>
-                    <small>${article.date} | ${article.category}</small>
-                    <p>${article.content}</p>
-                `;
-                container.appendChild(articleDiv);
-
-                // 헤드라인 뉴스 표시
-                if (article.headline) {
-                    headlineContainer.innerHTML = `<h2>${article.title}</h2><p>${article.content}</p>`;
+    <script>
+        // 카테고리 클릭 시 해당 섹션으로 부드럽게 이동
+        document.querySelectorAll('.category-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: "smooth"
+                    });
                 }
             });
-        }
-
-        // 카테고리 필터링
-        function showCategory(category) {
-            if (category === "all") {
-                displayNews(newsArticles);
-            } else {
-                const filteredNews = newsArticles.filter(article => article.category === category);
-                displayNews(filteredNews);
-            }
-        }
-
-        // 기사 추가 함수
-        function addArticle() {
-            const title = prompt("기사 제목을 입력하세요:");
-            const content = prompt("기사 내용을 입력하세요:");
-            const category = prompt("카테고리를 입력하세요 (핫이슈, SNS 트렌드, 연예):");
-            const date = new Date().toISOString().split("T")[0];
-            const isHeadline = confirm("이 기사를 헤드라인으로 설정할까요?");
-
-            if (title && content && category) {
-                newsArticles.push({ title, content, category, date, headline: isHeadline });
-                displayNews(newsArticles);
-            } else {
-                alert("모든 정보를 입력해야 합니다.");
-            }
-        }
-
-        // 초기 뉴스 표시
-        displayNews(newsArticles);
+        });
     </script>
 
 </body>
