@@ -5,116 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>핫라이트 - 실시간 핫 뉴스</title>
     <style>
-        /* ✅ 전체 스타일 */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #F9F9F9;
-            color: #333;
-        }
+/* ✅ 전체 스타일 */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F9F9F9;
+    color: #333;
+    overflow-x: hidden;
 
-   /* ✅ 헤더 스타일 (높이 줄이기) */
-header {
-    background-color: white;
-    padding: 10px 15px; /* 기존보다 패딩 줄임 */
-    border-bottom: 1px solid #ddd;
-    height: 50px; /* 높이 조절 */
-    display: flex;
-    align-items: center; /* 내용 가운데 정렬 */
 }
 
-   /* ✅ 헤더 컨테이너 (로고 & 네비게이션) */
+
+/* ✅ 헤더 스타일 */
+header {
+    background-color: white;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+/* ✅ 헤더 컨테이너 */
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1100px;
     margin: 0 auto;
+    width: 100%;
 }
 
 /* ✅ 로고 크기 줄이기 */
 .logo {
-    font-size: 20px; /* 기존보다 작게 */
+    font-size: 20px;
     font-weight: bold;
 }
 
- /* ✅ 네비게이션 스타일 (간격 줄이기) */
+/* ✅ 네비게이션 스타일 (모바일에서 줄어들도록 설정) */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 nav a {
-    margin-left: 10px; /* 기존보다 좌우 간격 축소 */
+    margin-left: 10px;
     text-decoration: none;
     color: #555;
-    font-size: 14px; /* 글씨 크기 조금 줄임 */
+    font-size: 14px;
+    padding: 5px 10px;
 }
 
 nav a:hover {
     color: #FF4081;
 }
-/* ✅ 카테고리 네비게이션 스타일 */
+
+/* ✅ 카테고리 네비게이션 스타일 (가운데 정렬 & 버튼 크기 조정) */
 .category-nav {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
     padding: 10px 20px;
     background: white;
     border-bottom: 1px solid #ddd;
-    overflow-x: auto;
-    border-radius: 20px; 
+    border-radius: 20px;
     max-width: 1100px;
-    margin: 15px auto 0; 
+    margin: 10px auto;
+    flex-wrap: nowrap; /* 자동 줄바꿈 방지 */
+    overflow-x: auto; /* 스크롤 가능하게 설정 */
+    white-space: nowrap; /* 줄바꿈 방지 */
+    -webkit-overflow-scrolling: touch; /* iOS에서 부드럽게 스크롤 */
 }
 
-/* ✅ 기본 상태에서도 hover 스타일 유지 */
+/* ✅ 카테고리 버튼 스타일 */
 .category-nav a {
     text-decoration: none;
     font-size: 14px;
-    color: white; /* 기본적으로 흰색 글씨 */
-    padding: 10px 15px;
-    border-radius: 15px;
-    background: #ff6a9c; /* 기본적으로 핫핑크 배경 */
+    color: white;
+    padding: 10px 18px;
+    border-radius: 25px;
+    background: #ff6a9c;
     transition: background 0.3s, color 0.3s;
+    flex-shrink: 0; /* 자동 줄어들지 않도록 */
 }
-
-/* ✅ 마우스를 올려도 동일한 스타일 유지 */
+/* ✅ 버튼 hover 유지 */
 .category-nav a:hover {
-    background: #ff548d; /* 동일한 핫핑크 유지 */
-    color: white; /* 동일한 흰색 유지 */
+    background: #ff548d;
+    color: white;
 }
 
 
 
-/* ✅ 메인 컨테이너 (좌우 정렬 유지) */
+/* ✅ 메인 뉴스 컨테이너 */
 .main-container {
     display: flex;
+    justify-content: space-between; /* 왼쪽 & 오른쪽 정렬 */
     max-width: 1100px;
-    margin: 40px auto;
+    margin: 20px auto;
     gap: 20px;
+    align-items: flex-start;
 }
 
-/* ✅ 왼쪽 컬럼을 세로 정렬로 변경 */
+/* ✅ 오른쪽 뉴스 전체를 감싸는 컨테이너 */
+.right-news-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* SNS 트렌드와 운세 창 사이 간격 */
+    width: 35%;
+}
+
+
+/* ✅ 오른쪽 뉴스 창 (SNS 트렌드 & 오늘의 운세) */
+.right-news {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ✅ 왼쪽 뉴스 (핫이슈 & 연예) */
 .left-column {
     display: flex;
-    flex-direction: column;  /* 세로 정렬! */
+    flex-direction: column;
     width: 65%;
+    background: white; /* 🔥 하얀색 컨테이너 복구 */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     gap: 20px;
 }
 
-/* ✅ 오른쪽 뉴스 (SNS 트렌드 & 운세) */
-.right-news {
-    width: 35%;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
 
-/* ✅ 왼쪽 뉴스 박스 */
-.left-news {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
 
 /* 🏷️ 뉴스 제목 (섹션) */
 .section-title {
@@ -126,7 +150,7 @@ nav a:hover {
     border-bottom: 2px solid #ddd;
 }
 
-/* 📰 뉴스 리스트 */
+/* ✅ 뉴스 리스트 */
 .news-item {
     display: flex;
     align-items: center;
@@ -136,15 +160,15 @@ nav a:hover {
 }
 /* 뉴스 썸네일 */
 .news-item img {
-    width: 80px;
+    width: 60px;
     height: 60px;
     object-fit: cover;
     border-radius: 5px;
 }
 
-
-      /* ✅ "오늘의 운세" 스타일 */
+/* 🏆 "오늘의 운세" 스타일 */
 .today-fortune {
+    width: auto;  /* 부모 크기에 맞게 자동 조정 */
     margin-top: 20px;
     padding: 20px;
     background: white;
@@ -152,28 +176,42 @@ nav a:hover {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+
 /* ✨ 운세 개별 항목 */
 .fortune-item {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 10px 0;
+    padding: 15px 0;
     border-bottom: 1px solid #eee;
 }
 
+/* ✅ 운세 아이콘(이미지) 크기 조정 */
 .fortune-item img {
-    width: 60px;
-    height: 60px;
+    width: 40px; /* 크기 조정 */
+    height: 40px;
     object-fit: cover;
     border-radius: 5px;
 }
 
+/* ✅ 운세 내용 정렬 */
+.fortune-content {
+    flex-grow: 1; /* 🔥 텍스트가 제대로 정렬되도록 설정 */
+    display: flex;
+    flex-direction: column;
+}
+
+/* ✅ 운세 제목 정렬 */
 .fortune-content h3 {
     font-size: 16px;
     font-weight: bold;
     margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 아이콘과 텍스트 간격 */
 }
 
+/* ✅ 운세 설명 */
 .fortune-content p {
     font-size: 14px;
     color: #666;
@@ -199,14 +237,34 @@ nav a:hover {
 }
 
 
-    /* ✅ 반응형 */
+  /* ✅ 반응형 - 모바일 최적화 */
 @media (max-width: 768px) {
     .main-container {
         flex-direction: column;
     }
-
-    .left-news, .right-news {
+    .left-column, .right-news {
         width: 100%;
+    }
+      /* ✅ 모바일에서 SNS 트렌드 & 운세 정렬 */
+      .right-news {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .category-nav {
+        flex-wrap: nowrap; /* 모바일에서 한 줄로 스크롤 가능하도록 */
+        overflow-x: auto; /* 스크롤 추가 */
+        padding: 8px;
+        white-space: nowrap;
+    }
+    .today-fortune {
+        width: 100%;
+    }
+
+    .category-nav a {
+        padding: 8px 12px; /* 모바일에서 좀 더 컴팩트하게 */
+        font-size: 12px;
     }
 
     .fortune-item {
@@ -217,6 +275,34 @@ nav a:hover {
     .fortune-item img {
         width: 100%;
         height: auto;
+    }
+    .news-item {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .news-item img {
+        width: 100%;
+        height: auto;
+    }
+
+    header {
+        height: auto; /* 모바일에서 자동 조절 */
+        flex-direction: column; /* 모바일에서 줄바꿈 */
+        padding: 8px 12px;
+    }
+
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav {
+        justify-content: center;
+        margin-top: 5px;
+    }
+    .right-news-container {
+        width: 100%;
     }
 }
     </style>
@@ -288,62 +374,59 @@ nav a:hover {
             </div>
         </div>
     
-        <!-- 📌 오른쪽 뉴스 섹션 (SNS 트렌드 & 오늘의 운세) -->
-        <div class="right-news">
-            <h2 class="section-title">📢 SNS 트렌드</h2>
-            
-            <div class="news-item">
-                <a href="sns_trend1.html" target="_blank">
-                    <img src="sns1.jpg" alt="SNS 트렌드">
-                    <h3>🔥 테스트플래닛 이대로 무너지는가 미룬이 이후로 무소식</h3>
-                </a>
-            </div>
-    
-            <div class="news-item">
-                <a href="sns_trend2.html" target="_blank">
-                    <img src="sns2.jpg" alt="SNS 트렌드">
-                    <h3>📸 추워서 산책 못간 우유 강아지 화제</h3>
-                </a>
-            </div>
-    
-            <!-- 🏆 "오늘의 운세" -->
-            <div class="today-fortune">
-                <h2 class="section-title">✨ 오늘의 운세</h2>
-    
-                <div class="fortune-item">
-                    <a href="fortune1.html" target="_blank">
-                        <img src="fortune1.jpg" alt="양자리 운세">
-                        <div class="fortune-content">
-                            <h3>🔥 우유자리 - 좋은 기회가 찾아와요!</h3>
-                            <p>오늘은 도전적인 하루! 예상치 못한 기회가 찾아올지도?</p>
-                        </div>
-                    </a>
-                </div>
-    
-                <div class="fortune-item">
-                    <a href="fortune2.html" target="_blank">
-                        <img src="fortune2.jpg" alt="사자자리 운세">
-                        <div class="fortune-content">
-                            <h3>🌟 다영자리 - 주목받는 하루</h3>
-                            <p>모두가 당신을 주목할 시간! 자신감을 가져보세요.</p>
-                        </div>
-                    </a>
-                </div>
-    
-                <div class="fortune-item">
-                    <a href="fortune3.html" target="_blank">
-                        <img src="fortune3.jpg" alt="물고기자리 운세">
-                        <div class="fortune-content">
-                            <h3>🌊 천사자리 - 직감이 빛을 발하는 날</h3>
-                            <p>오늘은 감각을 믿고 행동하세요. 좋은 결과가 있을 거예요.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
+ <!-- 📌 오른쪽 뉴스 컨테이너 (SNS 트렌드 + 오늘의 운세) -->
+<div class="right-news-container">
+
+    <!-- 📢 SNS 트렌드 -->
+    <div class="right-news">
+        <h2 class="section-title">📢 SNS 트렌드</h2>
+        
+        <div class="news-item">
+            <a href="sns_trend1.html" target="_blank">
+                <img src="sns1.jpg" alt="SNS 트렌드">
+                <h3>🔥 테스트플래닛 이대로 무너지는가 미룬이 이후로 무소식</h3>
+            </a>
+        </div>
+
+        <div class="news-item">
+            <a href="sns_trend2.html" target="_blank">
+                <img src="sns2.jpg" alt="SNS 트렌드">
+                <h3>📸 추워서 산책 못간 우유 강아지 화제</h3>
+            </a>
         </div>
     </div>
-    
-    
+
+    <!-- ✨ 오늘의 운세 (SNS 트렌드와 같은 스타일) -->
+    <div class="right-news">
+        <h2 class="section-title">✨ 오늘의 운세</h2>
+
+        <div class="news-item">
+            <a href="fortune1.html" target="_blank">
+                <img src="fortune1.jpg" alt="양자리 운세">
+                <h3>🔥 우유자리 - 좋은 기회가 찾아와요!</h3>
+                <p>오늘은 도전적인 하루! 예상치 못한 기회가 찾아올지도?</p>
+            </a>
+        </div>
+
+        <div class="news-item">
+            <a href="fortune2.html" target="_blank">
+                <img src="fortune2.jpg" alt="사자자리 운세">
+                <h3>🌟 다영자리 - 주목받는 하루</h3>
+                <p>모두가 당신을 주목할 시간! 자신감을 가져보세요.</p>
+            </a>
+        </div>
+
+        <div class="news-item">
+            <a href="fortune3.html" target="_blank">
+                <img src="fortune3.jpg" alt="물고기자리 운세">
+                <h3>🌊 천사자리 - 직감이 빛을 발하는 날</h3>
+                <p>오늘은 감각을 믿고 행동하세요. 좋은 결과가 있을 거예요.</p>
+            </a>
+        </div>
+    </div>
+
+</div>
+
     
     <script>
         // 카테고리 클릭 시 해당 섹션으로 부드럽게 이동
