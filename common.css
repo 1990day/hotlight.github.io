@@ -54,7 +54,7 @@ header {
 
 /* ✅ 카테고리 네비 */
 .category-nav {
-    display: flex;
+    display: flex !important;
     flex-wrap: wrap;
     justify-content: center;
     gap: 6px;
