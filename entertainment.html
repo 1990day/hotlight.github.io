@@ -1,50 +1,222 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>연예 뉴스 - 핫라이트</title>
-    <link rel="stylesheet" href="common.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>연예 뉴스 - 핫라이트</title>
+  <link rel="stylesheet" href="common.css">
+  <style>
+    /* === 글로벌 기본 스타일 === */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #F9F9F9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      overflow-x: hidden;
+      /* 헤더와 네비게이션의 고정 영역을 고려 */
+      padding-top: 100px;
+    }
+    
+    /* === 헤더 === */
+    header {
+      background-color: #fff;
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .header-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      width: 100%;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+    
+    /* === 카테고리 네비게이션 === */
+    .category-nav {
+      display: flex !important;
+      justify-content: center;
+      gap: 10px;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+      position: fixed;
+      top: 50px; /* 헤더 바로 아래 위치 */
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+    .category-nav a {
+      text-decoration: none;
+      font-size: 14px;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 15px;
+      background: #ff6a9c;
+      transition: background 0.3s, color 0.3s;
+      text-align: center;
+      min-width: 80px;
+      max-width: 100px;
+    }
+    .category-nav a:hover {
+      background: #ff548d;
+      color: white;
+    }
+    
+    /* === 메인 콘텐츠 영역 (날씨 레이아웃 적용) === */
+    .entertainment-content {
+      max-width: 900px;
+      margin: 30px auto 30px;
+      padding: 25px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+    }
+    .entertainment-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-align: center;
+      color: #333;
+    }
+    
+    /* === 연예 뉴스 기사 레이아웃 (날씨 레이아웃 재사용) === */
+    .news-article {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .entertainment-image {
+      width: 20%;
+      height: auto;
+      max-height: 500px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    /* 제목 부분: 데스크탑에서는 한 줄 표시 */
+    .entertainment-text {
+      width: 50%;
+      font-size: 20px;
+      line-height: 1.8;
+      color: #333;
+      font-weight: bold;
+      text-align: left;
+      white-space: nowrap;
+    }
+    
+    /* === 별도 뉴스 아이템 (개별 기사 박스) === */
+    .news-item {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 15px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .news-item img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .news-item h3 {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0;
+      color: #333;
+    }
+    
+    /* === 반응형 조정 === */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 140px;
+      }
+      .logo {
+        font-size: 18px;
+      }
+      .category-nav a {
+        font-size: 12px;
+        padding: 4px 8px;
+      }
+      .news-article {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .entertainment-image {
+        width: 100%;
+        max-height: 400px;
+      }
+      /* 모바일에서는 제목이 길 경우 자동 줄바꿈되도록 설정 */
+      .entertainment-text {
+        width: 100%;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 10px;
+        white-space: normal;
+      }
+      .entertainment-title {
+        font-size: 18px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <!-- 🏷️ 헤더 -->
-    <header>
-        <div class="header-container">
-            <h1 class="logo">핫라이트</h1>
-        </div>
-    </header>
-
-    <!-- 📌 카테고리 네비게이션 -->
-    <div class="category-nav">
-        <a href="index.html">홈</a>
-        <a href="hot-issue.html">핫이슈</a>
-        <a href="sns-trend.html">SNS트렌드</a>
-        <a href="entertainment.html">연예</a>
-        <a href="weather.html">날씨</a>
-        <a href="fortune.html">운세</a>
+  <!-- 헤더 -->
+  <header>
+    <div class="header-container">
+      <h1 class="logo">핫라이트</h1>
     </div>
-
-    <!-- 📰 연예 뉴스 섹션 -->
-    <div class="main-container">
-        <div class="left-column">
-            <h2 class="section-title">🎤 연예 뉴스</h2>
-
-            <div class="news-item">
-                <a href="entertainment1.html">
-                    <img src="ent1.jpg" alt="연예 뉴스">
-                    <h3>🎶 귀여운 우유 신곡 - 왈왈월월 빌보드 1위</h3>
-                </a>
-            </div>
-
-            <div class="news-item">
-                <a href="entertainment2.html">
-                    <img src="ent2.jpg" alt="연예 뉴스">
-                    <h3>🎬 화제의 드라마, 우유는 즐거워 시청률 1위 달성!</h3>
-                </a>
-            </div>
-        </div>
+  </header>
+  
+  <!-- 카테고리 네비게이션 -->
+  <nav class="category-nav">
+    <a href="index.html">홈</a>
+    <a href="hot-issue.html">핫이슈</a>
+    <a href="sns-trend.html">SNS트렌드</a>
+    <a href="entertainment.html">연예</a>
+    <a href="weather.html">날씨</a>
+    <a href="fortune.html">운세</a>
+  </nav>
+  
+  <!-- SNS 트렌드 콘텐츠 영역 -->
+  <div class="entertainment-content">
+    <h2 class="entertainment-title">🎤 연예 뉴스</h2>
+    <!-- 첫 번째 기사: 블랙핑크 월드투어 발표 -->
+    <div class="news-article">
+      <img src="entertainment-1.png" alt="연예 뉴스" class="entertainment-image">
+      <a href="entertainment1.html" class="entertainment-text">
+        블랙핑크 2025년 월드투어 공식 발표
+      </a>
     </div>
-
+  </div>
+  
+  <!-- 두 번째 기사: 화제의 드라마 -->
+  <div class="news-item">
+    <a href="entertainment2.html">
+      <img src="ent2.jpg" alt="연예 뉴스">
+      <h3>🎬 화제의 드라마, 우유는 즐거워 시청률 1위 달성!</h3>
+    </a>
+  </div>
 </body>
 </html>

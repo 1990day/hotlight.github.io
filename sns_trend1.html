@@ -4,33 +4,56 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SNS 트렌드 - 핫라이트</title>
+  <!-- 외부 파일과 충돌이 우려된다면 아래 링크를 주석 처리하고 내부 스타일만 사용 -->
   <link rel="stylesheet" href="common.css">
   <style>
-    /* 기본 배경 및 폰트 설정 */
+    /* === 기본 스타일 및 레이아웃 === */
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #f4f4f4;
+      background-color: #F9F9F9;
       margin: 0;
       padding: 0;
+      color: #333;
+      overflow-x: hidden;
+      /* 헤더(50px) + 네비게이션(약 50~60px) 고려 */
+      padding-top: 120px;
     }
-
-    /* 헤더 스타일 */
+    
+    /* === 헤더 === */
     header {
       background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 10px 0;
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
     }
     .header-container {
       max-width: 1100px;
       margin: 0 auto;
       text-align: center;
+      position: relative;
+      width: 100%;
     }
     .logo {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: bold;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
     }
-
-    /* 카테고리 네비게이션 */
+    
+    /* === 카테고리 네비게이션 === */
     .category-nav {
       display: flex !important;
       justify-content: center;
@@ -38,24 +61,31 @@
       background-color: #fff;
       border-bottom: 1px solid #ddd;
       padding: 10px 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: fixed;
+      /* 헤더 바로 아래에 위치 (헤더 높이 50px 적용) */
+      top: 50px;
+      left: 0;
+      width: 100%;
+      z-index: 999;
     }
     .category-nav a {
       text-decoration: none;
-      font-size: 16px;
-      color: #333;
+      font-size: 14px;
+      color: white;
       padding: 5px 15px;
-      border-radius: 20px;
+      border-radius: 15px;
+      background: #ff6a9c;
       transition: background 0.3s, color 0.3s;
+      text-align: center;
+      min-width: 80px;
+      max-width: 100px;
     }
     .category-nav a:hover {
-      background-color: #ff6a9c;
-      color: #fff;
+      background: #ff548d;
+      color: white;
     }
-
-    /* 메인 콘텐츠 영역 */
+    
+    /* === 메인 콘텐츠 영역 === */
     .main-container {
       max-width: 1100px;
       margin: 20px auto;
@@ -64,8 +94,8 @@
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-
-    /* 기사(Trend Article) 스타일 */
+    
+    /* === 기사 스타일 === */
     .trend-article {
       margin-bottom: 30px;
     }
@@ -90,24 +120,35 @@
       max-width: 100%;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin: 20px 0;
     }
     .trend-article figcaption {
       font-size: 16px;
       color: #777;
       margin-top: 8px;
+      text-align: center;
     }
-
-    /* 링크 스타일 (테스트잇 바로가기 강조) */
     .trend-article a {
       text-decoration: none;
       font-weight: bold;
+      /* 링크 색상은 여기서 개별 조정 */
     }
     .trend-article a:hover {
       text-decoration: underline;
     }
-
-    /* 반응형 조정 */
+    
+    /* === 반응형 조정 === */
     @media (max-width: 768px) {
+      body {
+        padding-top: 140px;
+      }
+      .logo {
+        font-size: 18px;
+      }
+      .category-nav a {
+        font-size: 12px;
+        padding: 4px 8px;
+      }
       .trend-article h2 {
         font-size: 24px;
       }
@@ -118,14 +159,13 @@
   </style>
 </head>
 <body>
-
   <!-- 헤더 -->
   <header>
     <div class="header-container">
       <h1 class="logo">핫라이트</h1>
     </div>
   </header>
-
+  
   <!-- 카테고리 네비게이션 -->
   <nav class="category-nav">
     <a href="index.html">홈</a>
@@ -135,23 +175,21 @@
     <a href="weather.html">날씨</a>
     <a href="fortune.html">운세</a>
   </nav>
-
+  
   <!-- 메인 콘텐츠 영역 -->
   <main class="main-container">
     <article class="trend-article">
       <h2>칠 가이: SNS 대세 신조어</h2>
       <figure>
-        <!-- 이미지 파일명은 실제 파일 경로에 맞게 수정 -->
         <img src="chill_guy1.png" alt="칠 가이 이미지">
         <figcaption>여유로운 칠 가이의 모습</figcaption>
       </figure>
       <p>"칠 가이"는 최근 온라인에서 유행하는 신조어로, 영어 표현 "Chill Guy"에서 유래한 말입니다. 여기서 "Chill"은 여유롭고 침착한 성격을 의미하고, "Guy"는 남자를 뜻합니다. 즉, "칠 가이"는 어떤 상황에서도 쿨하고 여유로운 태도를 유지하는 사람을 가리키는 말입니다.</p>
       <p>이 단어는 주로 편안하고 느긋한 성격의 사람을 묘사할 때 사용되며, 스트레스를 받지 않고 무던하게 받아들이는 성향을 가진 사람들을 의미합니다. SNS나 커뮤니티에서는 자기 자신을 가볍게 "칠 가이"라고 부르거나, 반대로 너무 조급해하거나 예민한 사람을 놀릴 때도 쓰입니다. 예를 들어, 친구가 작은 일에도 흥분하면 "야, 좀 칠 가이처럼 굴어라"라고 말하기도 합니다.</p>
       <p>이렇게 칠 가이가 유행하자 SNS에도 칠 가이 밈이 많아지고, 챌린지도 많이 진행되고 있습니다. 드립으로도 많이 사용되며, 인기 사이트인 <a href="https://test-it.co.kr/test251.html" target="_blank" rel="noopener noreferrer">테스트잇</a>에서는 칠 가이 테스트를 만들어 사용자들이 재미있게 이용할 수 있도록 했습니다.</p>
-      <!-- 테스트 바로가기 전에 추가 이미지 삽입 -->
       <figure>
-        <img src="chill_guy2.png" alt="테스트 배너 이미지" style="max-width:100%; margin: 20px 0; border-radius: 8px;">
-        <figcaption style="text-align: center; font-size: 16px; color: #777;">테스트잇에서 진행하는 칠 가이 테스트</figcaption>
+        <img src="chill_guy2.png" alt="테스트 배너 이미지">
+        <figcaption>테스트잇에서 진행하는 칠 가이 테스트</figcaption>
       </figure>
       <p style="text-align: center;">
         <strong>
@@ -162,6 +200,5 @@
       </p>
     </article>
   </main>
-
 </body>
 </html>

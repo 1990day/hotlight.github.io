@@ -4,64 +4,100 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>연예 뉴스 - 핫라이트</title>
+  <!-- 외부 CSS가 있다면 경로를 확인 -->
   <link rel="stylesheet" href="common.css">
   <style>
-    /* 기본 배경 및 폰트 설정 */
+    /* ===== 기본 스타일 ===== */
     body {
       font-family: 'Arial', sans-serif;
       background-color: #f4f4f4;
       margin: 0;
-      padding: 0;
+      padding: 0 15px;
+      color: #333;
+      overflow-x: hidden;
+      box-sizing: border-box;
+      padding-top: 100px; /* 헤더 + 네비게이션 높이 고려 */
     }
-    /* 헤더 스타일 */
+    
+    /* ===== 헤더 ===== */
     header {
-      background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 10px 0;
+      background-color: white;
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
     }
     .header-container {
+      width: 100%;
       max-width: 1100px;
       margin: 0 auto;
       text-align: center;
+      position: relative;
     }
     .logo {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: bold;
+      width: 100%;
+      max-width: 200px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
     }
-    /* 카테고리 네비게이션 */
+    
+    /* ===== 카테고리 네비게이션 ===== */
     .category-nav {
       display: flex !important;
+      flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
-      background-color: #fff;
+      gap: 6px;
+      padding: 8px 0;
+      background: white;
       border-bottom: 1px solid #ddd;
-      padding: 10px 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: fixed;
+      top: 70px; /* 헤더 아래 위치 */
+      left: 0;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 999;
     }
     .category-nav a {
       text-decoration: none;
-      font-size: 16px;
-      color: #333;
-      padding: 5px 15px;
-      border-radius: 20px;
+      font-size: 14px;
+      color: white; /* 버튼 텍스트 흰색 */
+      padding: 3px 5px;
+      border-radius: 15px;
+      background: #ff6a9c;
       transition: background 0.3s, color 0.3s;
+      flex: 1 1 calc(33.33% - 8px);
+      text-align: center;
+      min-width: 80px;
+      max-width: 100px;
     }
     .category-nav a:hover {
-      background-color: #ff6a9c;
-      color: #fff;
+      background: #ff548d;
+      color: white;
     }
-    /* 메인 콘텐츠 영역 */
+    
+    /* ===== 메인 콘텐츠 영역 ===== */
     .main-container {
       max-width: 1100px;
       margin: 20px auto;
       padding: 20px;
-      background: #fff;
+      background: white;
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
     }
-    /* 기사 스타일 */
+    
+    /* ===== 뉴스 기사 스타일 ===== */
     .news-article {
       margin-bottom: 30px;
     }
@@ -88,7 +124,8 @@
       color: #999;
       margin-bottom: 20px;
     }
-    /* 유튜브 영상 삽입용 컨테이너 (16:9 비율) */
+    
+    /* ===== 유튜브 영상 컨테이너 (16:9 비율) ===== */
     .video-container {
       position: relative;
       padding-bottom: 56.25%;
@@ -104,8 +141,25 @@
       width: 100%;
       height: 100%;
     }
-    /* 반응형 조정 */
+    
+    /* ===== 반응형 ===== */
     @media (max-width: 768px) {
+      body {
+        padding-top: 120px;
+      }
+      header {
+        height: 40px;
+        flex-direction: column;
+        padding: 8px 12px;
+      }
+      .category-nav {
+        top: 60px;
+        padding: 4px 5px;
+      }
+      .category-nav a {
+        font-size: 12px;
+        padding: 4px 2px;
+      }
       .news-article h2 {
         font-size: 24px;
       }
@@ -114,6 +168,9 @@
       }
       .news-article p {
         font-size: 16px;
+      }
+      .logo {
+        font-size: 18px;
       }
     }
   </style>
@@ -125,6 +182,7 @@
       <h1 class="logo">핫라이트</h1>
     </div>
   </header>
+  
   <!-- 카테고리 네비게이션 -->
   <div class="category-nav">
     <a href="index.html">홈</a>
@@ -134,6 +192,7 @@
     <a href="weather.html">날씨</a>
     <a href="fortune.html">운세</a>
   </div>
+  
   <!-- 메인 콘텐츠 영역 -->
   <main class="main-container">
     <article class="news-article">
