@@ -183,7 +183,7 @@ nav a:hover {
 
 /* 🏷️ 뉴스 제목 (섹션) */
 .section-title {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     color: #333;
     padding-bottom: 10px;
@@ -214,57 +214,85 @@ nav a:hover {
     border-radius: 5px;
 }
 
+/* ⭐ 별자리 운세 제목 스타일 (왼쪽 정렬 & 밑줄 한 줄) */
+.fortune-section .section-title {
+    text-align: left;         /* 제목은 왼쪽 정렬 */
+    padding-left: 0;          /* 왼쪽 여백 제거 */
+    font-size: 16px;          /* 제목 크기 */
+    font-weight: bold;
+    position: relative;
+    text-decoration: none;    /* 기본 밑줄 제거 */
+    border-bottom: none;      /* 기존 border-bottom 제거 */
+}
 
-/* 🏆 "오늘의 운세" 스타일 */
-.today-fortune {
-    width: auto;  /* 부모 크기에 맞게 자동 조정 */
-    margin-top: 20px;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* ✅ 밑줄이 끝까지 가도록 수정 */
+.fortune-section .section-title::after {
+    content: "";
+    display: block;
+    width: 100%;              /* 밑줄 전체 너비 */
+    height: 2px;
+    background-color: #ddd;   /* 연한 회색 */
+    position: absolute;
+    left: 0;
+    bottom: -5px;             /* 제목과 밑줄 사이 간격 */
 }
 
 
-/* ✨ 운세 개별 항목 */
-.fortune-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
+/* 별자리 운세 섹션 내 날짜와 아이콘를 가운데 정렬 */
+.fortune-section .fortune-date,
+.fortune-section .fortune-icon {
+    text-align: center;
 }
 
-/* ✅ 운세 아이콘(이미지) 크기 조정 */
-.fortune-item img {
-    width: 40px; /* 크기 조정 */
-    height: 40px;
-    object-fit: cover;
-    border-radius: 5px;
+/* 별자리 운세 보러가기 버튼을 가운데 정렬 (블록 요소로 변환 후 margin auto 적용) */
+.fortune-section .fortune-btn {
+    display: block;
+    margin: 10px auto;  /* 수평 가운데 정렬, 필요 시 상하 간격 조정 */
+    text-align: center;
+}
+.fortune-section .fortune-date {
+    display: block;           /* 블록 요소로 변경 */
+    margin: 0 auto 10px auto;  /* 좌우 margin auto로 가운데 정렬, 아래쪽 간격 10px */
+    text-align: center;       /* 텍스트 내부도 가운데 정렬 (필요시) */
 }
 
-/* ✅ 운세 내용 정렬 */
-.fortune-content {
-    flex-grow: 1; /* 🔥 텍스트가 제대로 정렬되도록 설정 */
-    display: flex;
-    flex-direction: column;
-}
-
-/* ✅ 운세 제목 정렬 */
-.fortune-content h3 {
+/* ⭐ 별자리 운세 날짜 스타일 (수정 후) */
+.fortune-date {
     font-size: 16px;
     font-weight: bold;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 8px; /* 아이콘과 텍스트 간격 */
+    margin-bottom: 10px;
+    color: #333; /* 원하시는 텍스트 색상으로 조정 */
+    background: none;       /* 배경 제거 */
+    padding: 0;             /* 패딩 제거 */
+    border-radius: 0;       /* 둥근 모서리 제거 */
+    box-shadow: none;       /* 그림자 제거 */
 }
 
-/* ✅ 운세 설명 */
-.fortune-content p {
+
+/* ⭐ 운세 아이콘 */
+.fortune-icon img {
+    width: 120px; /* 기존 크기 유지 */
+    height: 95px;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+/* ⭐ 운세 보러가기 버튼 */
+.fortune-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #ff6a9c;
+    color: white;
     font-size: 14px;
-    color: #666;
-    margin: 5px 0 0;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background 0.3s;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.fortune-btn:hover {
+    background: #ff548d;
 }
 
 
@@ -489,8 +517,8 @@ nav a:hover {
         <h2 class="section-title">🌤️ 오늘의 날씨</h2>
         <div class="news-item">
             <a href="weather1.html" target="_blank">
-                <img src="weather1.jpg" alt="오늘의 날씨">
-                <h3>☀️ 전국 맑음, 낮 기온 최고 20도 예상</h3>
+                <img src="weather1-1.png" alt="오늘의 날씨">
+                <h3>서울 아침 체감온도 영하 -20도까지 내려갈 것으로 예상</h3>
             </a>
         </div>
         <div class="news-item">
@@ -507,38 +535,51 @@ nav a:hover {
         </div>
     </div>
 
-    <!-- ✨ 오늘의 운세 -->
-    <div class="right-news">
-        <h2 class="section-title">✨ 오늘의 운세</h2>
-        <div class="news-item">
-            <a href="fortune1.html" target="_blank">
-                <img src="fortune1.jpg" alt="양자리 운세">
-                <h3>🔥 우유자리 - 좋은 기회가 찾아와요!</h3>
-            </a>
-        </div>
-        <div class="news-item">
-            <a href="fortune2.html" target="_blank">
-                <img src="fortune2.jpg" alt="사자자리 운세">
-                <h3>🌟 다영자리 - 주목받는 하루</h3>
-            </a>
-        </div>
-        <div class="news-item">
-            <a href="fortune3.html" target="_blank">
-                <img src="fortune3.jpg" alt="물고기자리 운세">
-                <h3>🌊 천사자리 - 직감이 빛을 발하는 날</h3>
-            </a>
-        </div>
+<!-- 🌟 이번 주 별자리 운세 -->
+<div class="right-news fortune-section">
+    <h2 class="section-title">✨ 별자리 운세</h2>
+
+    <!-- 날짜 표시 -->
+    <p class="fortune-date" id="fortune-date"></p>
+
+    <!-- 운세 아이콘 이미지 -->
+    <div class="fortune-icon">
+        <img src="fortune_icon.png" alt="별자리 운세 아이콘">
     </div>
+
+    <!-- 별자리 운세 보러가기 버튼 -->
+    <a href="fortune.html" class="fortune-btn">✨ 별자리 운세 보러가기</a>
 </div>
+
+
+
 
 
         </div> <!-- 오른쪽 뉴스 끝 -->
 
     </div> <!-- 메인 뉴스 컨테이너 끝 -->
 
-    
     <script>
-   
+       // 이번 주 날짜 자동 설정
+       function updateFortuneDate() {
+        const today = new Date();
+        const dayOfWeek = today.getDay(); // 0 (일) ~ 6 (토)
+        const startOfWeek = new Date(today);
+        startOfWeek.setDate(today.getDate() - dayOfWeek + 3); // 이번 주 (목요일) 기준
+
+        const endOfWeek = new Date(startOfWeek);
+        endOfWeek.setDate(startOfWeek.getDate() + 6); // 주말(수요일)까지
+
+        // 날짜 포맷 변경 (예: 2월 3일 ~ 2월 9일)
+        const formatDate = (date) => 
+            `${date.getMonth() + 1}월 ${date.getDate()}일`;
+
+        document.getElementById("fortune-date").innerText = 
+            `${formatDate(startOfWeek)} ~ ${formatDate(endOfWeek)}`;
+    }
+
+    // 실행
+    updateFortuneDate();
     </script>
 
 </body>

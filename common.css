@@ -171,6 +171,47 @@ a:hover, a:visited, a:active {
     background: #ff548d;
     color: white !important; /* 🔥 hover 시에도 흰색 유지 */
 }
+
+/* ⭐ 별자리 운세 날짜 스타일 */
+.fortune-date {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* ⭐ 별자리 운세 아이콘 스타일 */
+.fortune-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.fortune-icon img {
+    width: 40px; /* 아이콘 크기 조절 */
+    height: 40px;
+}
+
+/* ⭐ 별자리 운세 보러가기 버튼 */
+.fortune-btn {
+    display: block;
+    text-align: center;
+    background: #ff6a9c;
+    color: white;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.fortune-btn:hover {
+    background: #ff548d;
+}
+
 /* ✅ 반응형 */
 @media (max-width: 768px) {
     body {
