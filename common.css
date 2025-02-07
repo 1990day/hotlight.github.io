@@ -176,7 +176,11 @@ a:hover, a:visited, a:active {
     body {
         padding-top: 120px;
     }
-    
+    header {
+        height: 40px;
+        flex-direction: column; /* 모바일에서 줄바꿈 */
+        padding: 8px 12px;
+    }
     .category-nav {
         justify-content: center;
         max-width: 100%;
