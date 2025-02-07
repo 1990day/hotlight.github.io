@@ -4,18 +4,19 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5522499110435321"
      crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
     <title>핫라이트 - 실시간 핫 뉴스</title>
     <style>
 /* ✅ 전체 스타일 */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 0 15px; /* 📌 폰에서 좌우 여백 추가 */
     background-color: #F9F9F9;
     color: #333;
     overflow-x: hidden;
-
+    box-sizing: border-box; /* 📌 패딩이 요소 크기에 포함되도록 설정 */
 }
 
 
@@ -67,30 +68,30 @@ nav a:hover {
 /* ✅ 카테고리 네비게이션 스타일 (가운데 정렬 & 버튼 크기 조정) */
 .category-nav {
     display: flex;
-    justify-content: center;
-    gap: 12px;
-    padding: 10px 20px;
+    flex-wrap: wrap;
+    justify-content: center; /* ✅ 가운데 정렬 */
+    gap: 8px; /* ✅ 버튼 간격 줄이기 */
+    padding: 5px 10px; /* ✅ 패딩 작게 조정 */
     background: white;
     border-bottom: 1px solid #ddd;
     border-radius: 20px;
     max-width: 1100px;
     margin: 10px auto;
-    flex-wrap: nowrap; /* 자동 줄바꿈 방지 */
-    overflow-x: auto; /* 스크롤 가능하게 설정 */
-    white-space: nowrap; /* 줄바꿈 방지 */
-    -webkit-overflow-scrolling: touch; /* iOS에서 부드럽게 스크롤 */
 }
 
 /* ✅ 카테고리 버튼 스타일 */
 .category-nav a {
     text-decoration: none;
-    font-size: 14px;
+    font-size: 14px; /* ✅ 글씨 크기 (PC 기준) */
     color: white;
-    padding: 10px 18px;
-    border-radius: 25px;
+    padding: 6px 12px; /* ✅ 패딩 작게 조정 */
+    border-radius: 20px;
     background: #ff6a9c;
     transition: background 0.3s, color 0.3s;
-    flex-shrink: 0; /* 자동 줄어들지 않도록 */
+    flex: 1 1 auto;
+    text-align: center;
+    min-width: 80px; /* ✅ 버튼 최소 크기 */
+    max-width: 150px; /* ✅ 버튼 최대 크기 */
 }
 /* ✅ 버튼 hover 유지 */
 .category-nav a:hover {
@@ -103,43 +104,48 @@ nav a:hover {
 /* ✅ 메인 뉴스 컨테이너 */
 .main-container {
     display: flex;
-    justify-content: space-between; /* 왼쪽 & 오른쪽 정렬 */
+    justify-content: space-between;
+    width: 95%; /* 기존 유지 */
     max-width: 1100px;
     margin: 20px auto;
     gap: 20px;
     align-items: flex-start;
+    overflow: hidden;
+    padding: 0 15px; /* 📌 부모 요소에 패딩 추가 */
+    box-sizing: border-box;
 }
-
 /* ✅ 오른쪽 뉴스 전체를 감싸는 컨테이너 */
 .right-news-container {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* SNS 트렌드와 운세 창 사이 간격 */
-    width: 35%;
+    gap: 15px; /* ✅ 간격 조정 */
+    flex: 1;
+    padding: 0; /* ✅ 패딩 제거해서 내부 요소랑 균형 맞춤 */
+    box-sizing: border-box;
+    min-width: 300px; /* ✅ 최소 크기 유지 */
 }
-
 
 /* ✅ 오른쪽 뉴스 창 (SNS 트렌드 & 오늘의 운세) */
 .right-news {
     background: white;
-    padding: 20px;
+    padding: 15px; /* ✅ 패딩 줄여서 왼쪽과 동일하게 맞춤 */
+    width: 100%;
+    max-width: 100%;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
-
-
 /* ✅ 왼쪽 뉴스 (핫이슈 & 연예) */
 .left-column {
     display: flex;
     flex-direction: column;
     width: 65%;
-    background: white; /* 🔥 하얀색 컨테이너 복구 */
-    padding: 20px;
+    background: white;
+    padding: 15px; /* ✅ 오른쪽과 동일하게 유지 */
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    gap: 20px;
+    gap: 15px; /* ✅ 간격 통일 */
 }
-
 
 
 /* 🏷️ 뉴스 제목 (섹션) */
@@ -162,11 +168,12 @@ nav a:hover {
 }
 /* 뉴스 썸네일 */
 .news-item img {
-    width: 60px;
+    width: 60px; /* ✅ 최소 크기 지정 */
     height: 60px;
     object-fit: cover;
     border-radius: 5px;
 }
+
 
 /* 🏆 "오늘의 운세" 스타일 */
 .today-fortune {
@@ -243,30 +250,34 @@ nav a:hover {
 @media (max-width: 768px) {
     .main-container {
         flex-direction: column;
-    }
-    .left-column, .right-news {
+        align-items: center;
         width: 100%;
+        padding: 0 15px !important; /* ✅ 부모 요소에 패딩 강제 적용 */
+    }
+  
+    .left-column, .right-news-container {
+        width: 100%;
+        padding: 0 !important; /* ✅ 내부 패딩 제거해서 균형 맞춤 */
     }
       /* ✅ 모바일에서 SNS 트렌드 & 운세 정렬 */
       .right-news {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .category-nav {
-        flex-wrap: nowrap; /* 모바일에서 한 줄로 스크롤 가능하도록 */
-        overflow-x: auto; /* 스크롤 추가 */
-        padding: 8px;
-        white-space: nowrap;
-    }
-    .today-fortune {
         width: 100%;
+        padding: 15px !important; /* ✅ 왼쪽과 동일하게 유지 */
+    }
+    .category-nav {
+        justify-content: center;
+        max-width: 100%;
+        padding: 3px 5px; /* ✅ 패딩 더 줄이기 */
     }
 
-    .category-nav a {
-        padding: 8px 12px; /* 모바일에서 좀 더 컴팩트하게 */
-        font-size: 12px;
+
+ /* ✅ 카테고리 버튼 스타일 */
+
+ .category-nav a {
+        flex: 1 1 45%; /* ✅ 최대 두 줄까지만 */
+        font-size: 12px; /* ✅ 글씨 크기 줄이기 */
+        padding: 5px 10px; /* ✅ 버튼 패딩 줄이기 */
+        max-width: 120px; /* ✅ 최대 크기 제한 */
     }
 
     .fortune-item {
@@ -279,13 +290,16 @@ nav a:hover {
         height: auto;
     }
     .news-item {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row !important; /* 📌 이미지랑 텍스트가 정렬되도록 */
+        align-items: center !important;
         width: 100%;
     }
+
     .news-item img {
-        width: 100%;
-        height: auto;
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 5px;
     }
 
     header {
@@ -297,13 +311,12 @@ nav a:hover {
     .header-container {
         flex-direction: column;
         align-items: center;
+        text-align: center;
     }
 
     nav {
         justify-content: center;
         margin-top: 5px;
-    }
-    .right-news-container {
         width: 100%;
     }
 }
