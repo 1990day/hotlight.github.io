@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>날씨 - 핫라이트</title>
+    <link rel="stylesheet" href="common.css">
+    <style>
+        .weather-content {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .weather-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .weather-image {
+    width: 100%;
+    height: auto; /* 👈 높이를 자동 조절하여 비율 유지 */
+    max-height: 400px; /* 👈 너무 커지지 않도록 최대 높이 설정 */
+    object-fit: contain; /* 👈 이미지가 잘리지 않도록 설정 */
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+        .weather-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .weather-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .weather-table th, .weather-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .weather-table th {
+            background: #ff6a9c;
+            color: white;
+        }
+
+        .weather-alert {
+            background: #ffe8e8;
+            padding: 15px;
+            border-radius: 8px;
+            color: #d9534f;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🏷️ 헤더 -->
+    <header>
+        <div class="header-container">
+            <h1 class="logo">핫라이트</h1>
+        </div>
+    </header>
+
+    <!-- 📌 카테고리 네비게이션 -->
+    <div class="category-nav">
+        <a href="index.html">홈</a>
+        <a href="hot-issue.html">핫이슈</a>
+        <a href="sns-trend.html">SNS트렌드</a>
+        <a href="entertainment.html">연예</a>
+        <a href="weather.html">날씨</a>
+        <a href="fortune.html">운세</a>
+    </div>
+
+    <!-- 🌤️ 날씨 뉴스 콘텐츠 -->
+    <div class="weather-content">
+        <h2 class="weather-title">🌤️ 내일(2월 8일) 전국 날씨 예보</h2>
+        
+        <img src="weather1-1.png" alt="내일의 날씨" class="weather-image">
+
+        <p class="weather-text">
+            내일(2월 8일)은 전국적으로 <strong>매우 추운 날씨</strong>가 예상됩니다.  
+            현재 전국 대부분 지역에 <strong>한파 특보</strong>가 발효 중이며,  
+            특히 <strong>중부·전북·영남 지역</strong>은 한파의 영향을 크게 받을 것으로 보입니다.  
+            <br><br>
+        <strong>서울의 아침 기온</strong>은 <strong>영하 13도</strong>, 체감 온도는 <strong>영하 20도</strong>까지 떨어지겠으며,  
+            낮 최고 기온도 <strong>영하 3도</strong>에 머물러 종일 강추위가 이어질 전망입니다.  
+            <br><br>
+        <strong>호남과 제주 지역</strong>에는 많은 눈이 내릴 것으로 예상되며,  
+    <strong>제주 산지 20cm, 호남 15cm 이상</strong> 적설이 예상됩니다.  
+<strong>빙판길 사고</strong>에 유의하시기 바랍니다.
+        </p>
+
+        <!-- 🌡️ 지역별 기온 테이블 -->
+        <h3 class="weather-title">📍 지역별 기온</h3>
+        <table class="weather-table">
+            <tr>
+                <th>지역</th>
+                <th>아침 기온</th>
+                <th>낮 기온</th>
+            </tr>
+            <tr>
+                <td>서울</td>
+                <td>-13℃</td>
+                <td>-3℃</td>
+            </tr>
+            <tr>
+                <td>강릉</td>
+                <td>-11℃</td>
+                <td>-3℃</td>
+            </tr>
+            <tr>
+                <td>대전</td>
+                <td>-11℃</td>
+                <td>-1℃</td>
+            </tr>
+            <tr>
+                <td>전주</td>
+                <td>-9℃</td>
+                <td>-2℃</td>
+            </tr>
+            <tr>
+                <td>춘천</td>
+                <td>-14℃</td>
+                <td>-3℃</td>
+            </tr>
+            <tr>
+                <td>청주</td>
+                <td>-12℃</td>
+                <td>-2℃</td>
+            </tr>
+            <tr>
+                <td>부산</td>
+                <td>-5℃</td>
+                <td>3℃</td>
+            </tr>
+        </table>
+
+        <div class="weather-alert">
+            ⚠️ **강풍 주의보 발효!** 전국적으로 강한 바람이 불 것으로 예상됩니다.  
+            야외 시설물 관리와 보온에 유의하세요!
+        </div>
+    </div>
+
+</body>
+</html>
