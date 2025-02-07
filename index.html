@@ -39,15 +39,29 @@ header {
 /* ✅ 헤더 컨테이너 */
 .header-container {
     display: flex;
-    justify-content: center;
+    justify-content: center;  /* ✅ 중앙 정렬 */
     align-items: center;
     width: 100%;
+    position: relative; /* ✅ 내부 정렬을 더 정확하게 설정 */
 }
 
-/* ✅ 로고 크기 줄이기 */
+
+/* ✅ 로고 정중앙 배치 */
 .logo {
     font-size: 20px;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px; /* ✅ 아이콘과 글자 사이 간격 */
+    text-align: center;
+    width: auto; /* ✅ 부모 너비에 맞추지 않고 자체 크기로 조정 */
+}
+/* ✅ 로고 아이콘 크기 조정 */
+.logo img, .logo-icon {
+    width: 22px;  /* ✅ 아이콘 크기 조정 */
+    height: 22px;
+    vertical-align: middle; /* ✅ 글자와 동일 선상에 배치 */
 }
 
 /* ✅ 네비게이션 스타일 (모바일에서 줄어들도록 설정) */
@@ -327,13 +341,26 @@ nav a:hover {
     }
 
     .header-container {
+        display: flex;
         flex-direction: column;
+        justify-content: center; /* ✅ 중앙 정렬 유지 */
         align-items: center;
         text-align: center;
         height: 30px; /* ✅ 모바일에서는 높이 줄이기 */
         padding: 5px 0;
     }
 
+    .logo {
+        font-size: 18px;  /* ✅ 모바일에서 적당한 크기로 유지 */
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .logo img, .logo-icon {
+        width: 18px;  /* ✅ 모바일에서 더 적당한 크기로 조정 */
+        height: 18px;
+    }
     nav {
         justify-content: center;
         margin-top: 5px;
@@ -347,7 +374,7 @@ nav a:hover {
     <!-- 🏷️ 헤더 -->
     <header>
         <div class="header-container">
-            <h1 class="logo">🔥 핫라이트</h1>
+            <h1 class="logo">핫라이트</h1>
         
         </div>
     </header>
