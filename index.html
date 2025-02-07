@@ -17,27 +17,30 @@ body {
     color: #333;
     overflow-x: hidden;
     box-sizing: border-box; /* 📌 패딩이 요소 크기에 포함되도록 설정 */
+    padding-top: 100px; /* ✅ 고정된 헤더 + 네비게이션 높이만큼 추가 */
 }
 
 
 /* ✅ 헤더 스타일 */
 header {
-    background-color: white;
-    padding: 10px 15px;
+     background-color: white;
+    padding: 8px 0;
     border-bottom: 1px solid #ddd;
-    height: auto;
+    height: 50px; /* ✅ 기본 높이 */
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 /* ✅ 헤더 컨테이너 */
 .header-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    max-width: 1100px;
-    margin: 0 auto;
     width: 100%;
 }
 
@@ -69,30 +72,36 @@ nav a:hover {
 .category-nav {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* ✅ 가운데 정렬 */
-    gap: 8px; /* ✅ 버튼 간격 줄이기 */
-    padding: 5px 10px; /* ✅ 패딩 작게 조정 */
+    justify-content: center;
+    gap: 4px; /* ✅ 버튼 간격 최소화 */
+    padding: 8px 0;
     background: white;
     border-bottom: 1px solid #ddd;
-    border-radius: 20px;
-    max-width: 1100px;
-    margin: 10px auto;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 999;
+    max-height: 80px; /* ✅ 두 줄까지만 허용 */
+    overflow: hidden; /* ✅ 3줄 이상 숨김 */
 }
 
 /* ✅ 카테고리 버튼 스타일 */
 .category-nav a {
     text-decoration: none;
-    font-size: 14px; /* ✅ 글씨 크기 (PC 기준) */
+    font-size: 11px; /* ✅ 글씨 크기 줄이기 */
     color: white;
-    padding: 6px 12px; /* ✅ 패딩 작게 조정 */
-    border-radius: 20px;
+    padding: 3px 5px; /* ✅ 패딩 최소화 */
+    border-radius: 15px;
     background: #ff6a9c;
     transition: background 0.3s, color 0.3s;
-    flex: 1 1 auto;
+    flex: 1 1 calc(33.33% - 8px); /* ✅ 한 줄에 무조건 3개씩 배치 */
     text-align: center;
-    min-width: 80px; /* ✅ 버튼 최소 크기 */
-    max-width: 150px; /* ✅ 버튼 최대 크기 */
+    min-width: 80px;
+    max-width: 100px;
 }
+
 /* ✅ 버튼 hover 유지 */
 .category-nav a:hover {
     background: #ff548d;
@@ -105,13 +114,13 @@ nav a:hover {
 .main-container {
     display: flex;
     justify-content: space-between;
-    width: 95%; /* 기존 유지 */
+    width: 95%;
     max-width: 1100px;
     margin: 20px auto;
     gap: 20px;
     align-items: flex-start;
     overflow: hidden;
-    padding: 0 15px; /* 📌 부모 요소에 패딩 추가 */
+    padding: 10 15px;
     box-sizing: border-box;
 }
 /* ✅ 오른쪽 뉴스 전체를 감싸는 컨테이너 */
@@ -267,18 +276,29 @@ nav a:hover {
     .category-nav {
         justify-content: center;
         max-width: 100%;
-        padding: 3px 5px; /* ✅ 패딩 더 줄이기 */
+        top: 60px; /* ✅ 헤더 높이에 맞춰 조정 */
+        padding: 4px 5px; /* ✅ 전체 패딩 유지 */
+        flex-wrap: wrap;
+        max-height: 60px; /* ✅ 최대 두 줄까지만 허용 */
+        overflow: hidden;
     }
 
 
  /* ✅ 카테고리 버튼 스타일 */
 
- .category-nav a {
-        flex: 1 1 45%; /* ✅ 최대 두 줄까지만 */
-        font-size: 12px; /* ✅ 글씨 크기 줄이기 */
-        padding: 5px 10px; /* ✅ 버튼 패딩 줄이기 */
-        max-width: 120px; /* ✅ 최대 크기 제한 */
+ body {
+        padding-top: 140px; /* ✅ 모바일에서는 헤더 + 카테고리 높이에 맞게 조정 */
     }
+    
+    .category-nav a {
+        flex: 1 1 calc(33.33% - 4px); /* ✅ 한 줄에 3개 강제 */
+        font-size: 12px; /* ✅ 글씨 크기 유지 */
+        padding: 4px 2px; /* ✅ 글씨 양옆 패딩만 최소화 */
+        max-width: 100px; /* ✅ 버튼 크기 유지 */
+        background: #ff548d;
+        color: white;
+    }
+
 
     .fortune-item {
         flex-direction: column;
@@ -303,7 +323,7 @@ nav a:hover {
     }
 
     header {
-        height: auto; /* 모바일에서 자동 조절 */
+        height: 40px;
         flex-direction: column; /* 모바일에서 줄바꿈 */
         padding: 8px 12px;
     }
@@ -312,6 +332,8 @@ nav a:hover {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        height: 30px; /* ✅ 모바일에서는 높이 줄이기 */
+        padding: 5px 0;
     }
 
     nav {
@@ -328,10 +350,7 @@ nav a:hover {
     <header>
         <div class="header-container">
             <h1 class="logo">🔥 핫라이트</h1>
-            <nav>
-                <a href="https://saju-planet.co.kr/">사주플래닛</a>
-
-            </nav>
+        
         </div>
     </header>
 
