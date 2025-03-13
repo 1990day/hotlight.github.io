@@ -461,14 +461,14 @@ nav a:hover {
                 <div class="news-item">
                     <a href="hot_issue1.html" target="_blank">
                         <img src="news1.jpg" alt="핫이슈 뉴스">
-                        <h3>긴급 속보! "우유는 공주" 너무 귀여워</h3>
+                        <h3>긴급 속보! </h3>
                     </a>
                 </div>
 
                 <div class="news-item">
                     <a href="hot_issue2.html" target="_blank">
                         <img src="news2.jpg" alt="핫이슈 뉴스">
-                        <h3>테스트잇 새로운 에니어그램 테스트 선보여 화제</h3>
+                        <h3>뭐쓰지</h3>
                     </a>
                 </div>
             </div>
@@ -485,7 +485,7 @@ nav a:hover {
     <div class="news-item">
         <a href="entertainment2.html" target="_blank">
             <img src="ent2.jpg" alt="연예 뉴스">
-            <h3>🎬 화제의 드라마, 우유는 즐거워 시청률 1위 달성!</h3>
+            <h3>🎬 화제의 드라마, 시청률 1위 달성!</h3>
         </a>
     </div>
 </div>
@@ -502,7 +502,7 @@ nav a:hover {
     <div class="news-item">
         <a href="sns_trend2.html" target="_blank">
             <img src="sns2.jpg" alt="SNS 트렌드">
-            <h3>📸 추워서 산책 못간 우유 강아지 화제</h3>
+            <h3>📸 추워서 산책 못간강아지 화제</h3>
         </a>
     </div>
 </div>
@@ -518,7 +518,7 @@ nav a:hover {
         <div class="news-item">
             <a href="weather1.html" target="_blank">
                 <img src="weather1-1.png" alt="오늘의 날씨">
-                <h3>서울 아침 체감온도 영하 -20도까지 내려갈 것으로 예상</h3>
+                <h3>전국적으로 맑은 날씨가 예상, 중간중간 비 소식과 강풍 예보</h3>
             </a>
         </div>
         <div class="news-item">
@@ -562,24 +562,26 @@ nav a:hover {
     <script>
        // 이번 주 날짜 자동 설정
        function updateFortuneDate() {
-        const today = new Date();
-        const dayOfWeek = today.getDay(); // 0 (일) ~ 6 (토)
-        const startOfWeek = new Date(today);
-        startOfWeek.setDate(today.getDate() - dayOfWeek + 3); // 이번 주 (목요일) 기준
+    const today = new Date();
+    const dayOfWeek = today.getDay(); // 0 (일) ~ 6 (토)
+    
+    // 이번 주의 월요일 계산 (현재 날짜에서 요일 수만큼 빼기)
+    const startOfWeek = new Date(today);
+    startOfWeek.setDate(today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1)); // 일요일일 경우 -6
 
-        const endOfWeek = new Date(startOfWeek);
-        endOfWeek.setDate(startOfWeek.getDate() + 6); // 주말(수요일)까지
+    // 이번 주의 일요일 계산
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(startOfWeek.getDate() + 6);
 
-        // 날짜 포맷 변경 (예: 2월 3일 ~ 2월 9일)
-        const formatDate = (date) => 
-            `${date.getMonth() + 1}월 ${date.getDate()}일`;
+    // 날짜 포맷 변경 (예: 3월 11일 ~ 3월 17일)
+    const formatDate = (date) => `${date.getMonth() + 1}월 ${date.getDate()}일`;
 
-        document.getElementById("fortune-date").innerText = 
-            `${formatDate(startOfWeek)} ~ ${formatDate(endOfWeek)}`;
-    }
+    document.getElementById("fortune-date").innerText = `${formatDate(startOfWeek)} ~ ${formatDate(endOfWeek)}`;
+}
 
-    // 실행
-    updateFortuneDate();
+// 실행
+updateFortuneDate();
+
     </script>
 
 </body>
