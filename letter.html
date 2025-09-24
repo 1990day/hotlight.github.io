@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>🌈 무지개다리 편지함</title>
+  <style>
+    body {
+      margin:0;
+      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      background:#fffafc;
+    }
+
+header {
+  display: flex;
+  align-items: center;      /* 세로 중앙 정렬 */
+  justify-content: space-between;
+  padding: 0 16px;
+  height: 60px;             /* 고정 높이 */
+  background-color: pink;
+}
+/* 제목 */
+header h1 {
+  font-size:22px;
+  font-weight:bold;
+  color:#444;
+  margin:0;
+  white-space:nowrap;
+  flex:1;
+  text-align:center;
+}
+header h1 a {
+  text-decoration: none;  /* 밑줄 제거 */
+  color: #444;            /* 원래 h1 색상 유지 */
+  display: inline-block;
+  width: 100%;            /* h1 전체 클릭 가능 */
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;  /* 세로로 쌓이게 */
+  align-items: center;     /* 가로 중앙 */
+  justify-content: center; /* 세로 중앙 */
+  height: 60px;            /* header 높이랑 맞춤 */
+  width: 60px;             /* 정사각형 */
+  padding: 0;
+  margin: 0;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #333;
+  margin: 4px 0;           /* 막대 사이 간격 */
+  border-radius: 2px;
+}
+    /* 사이드 메뉴 */
+    #sidebar {
+      position:fixed;
+      top:60px; /* header 아래 */
+      right:0;
+      width:200px;
+      height:100%;
+      background:#ffe6f2;
+      display:none;
+      flex-direction:column;
+      padding:20px;
+      box-shadow:-2px 0 6px rgba(0,0,0,0.1);
+      z-index:999;
+    }
+    #sidebar ul { list-style:none; padding:0; margin:0; }
+    #sidebar li { margin:15px 0; }
+    #sidebar a { text-decoration:none; color:#444; font-weight:500; }
+
+    /* 컨텐츠 */
+    .content {
+      padding:30px;
+      max-width:800px;
+      margin:0 auto;
+    }
+
+    .content h1 { text-align:center; margin-bottom:24px; }
+
+    label { display:block; margin:12px 0 6px; font-weight:500; }
+    input, select, textarea {
+      width:100%; padding:12px;
+      border:1px solid #e9e9e9; border-radius:10px;
+      font-size:15px; box-sizing:border-box;
+    }
+    textarea { resize:vertical; min-height:120px; }
+
+    button {
+      margin-top:18px; padding:14px;
+      width:100%; border:0; border-radius:12px;
+      background:linear-gradient(135deg,#ffd9ec,#ffc9e3);
+      font-weight:600; cursor:pointer; font-size:16px;
+    }
+    button:hover { background:linear-gradient(135deg,#ffc9e3,#ffb6d5); }
+
+    .note { font-size:13px; color:#777; margin-top:8px; text-align:center; }
+
+    /* 편지지 선택 */
+    .papers { display:flex; gap:16px; margin-top:10px; }
+    .papers label {
+      flex:1; text-align:center;
+      border:2px solid transparent;
+      border-radius:10px;
+      padding:8px; cursor:pointer;
+      transition:.2s;
+    }
+    .papers input { display:none; }
+    .papers img {
+      max-width:100%; border-radius:8px; height:120px; object-fit:cover;
+    }
+    .papers input:checked + img {
+      border:2px solid #ff7eb9;
+    }
+
+/* 반응형 */
+@media(max-width:768px) {
+  .menu-toggle { display:flex; }
+  header h1 { font-size:18px; }
+}
+  </style>
+</head>
+<body>
+  <!-- 상단바 -->
+<header>
+  <h1><a href="index.html">🌈 무지개다리 편지함</a></h1>
+  <button class="menu-toggle" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+  <!-- 사이드 메뉴 -->
+  <nav id="sidebar">
+    <ul>
+      <li><a href="#">홈</a></li>
+      <li><a href="#">편지쓰기</a></li>
+      <li><a href="#">이용안내</a></li>
+    </ul>
+  </nav>
+
+  <!-- 메인 영역 -->
+  <div class="content">
+    <h1>편지를 작성해주세요</h1>
+    <form id="letterForm">
+      <label>주인 이름</label>
+      <input type="text" id="ownerName" required>
+
+      <label>반려동물 이름</label>
+      <input type="text" id="petName" required>
+
+      <label>반려동물 종류</label>
+      <select id="petType" required>
+        <option value="강아지">강아지</option>
+        <option value="고양이">고양이</option>
+        <option value="토끼">토끼</option>
+        <option value="새">새</option>
+        <option value="기타">기타</option>
+      </select>
+
+      <label>이메일 (필수)</label>
+      <input type="email" id="email" required placeholder="example@mail.com">
+
+      <label>편지지 선택</label>
+      <div class="papers">
+        <label>
+          <input type="radio" name="paperId" value="paper1" required>
+          <img src="paper1.png" alt="편지지1">
+        </label>
+        <label>
+          <input type="radio" name="paperId" value="paper2">
+          <img src="paper2.png" alt="편지지2">
+        </label>
+        <label>
+          <input type="radio" name="paperId" value="paper3">
+          <img src="paper3.png" alt="편지지3">
+        </label>
+      </div>
+
+      <label>편지 내용 (최대 1000자)</label>
+      <textarea id="message" maxlength="1000" required></textarea>
+
+      <button type="submit">편지 보내기</button>
+      <p id="result" class="note"></p>
+    </form>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.display = sidebar.style.display === "flex" ? "none" : "flex";
+    }
+
+    const form = document.getElementById('letterForm');
+    const result = document.getElementById('result');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const payload = {
+        ownerName: document.getElementById('ownerName').value.trim(),
+        petName: document.getElementById('petName').value.trim(),
+        petType: document.getElementById('petType').value,
+        email: document.getElementById('email').value.trim(),
+        paperId: document.querySelector('input[name="paperId"]:checked').value,
+        message: document.getElementById('message').value.trim()
+      };
+
+      try {
+        const res = await fetch("YOUR_SCRIPT_URL", {
+          method: "POST",
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!data.ok) throw new Error("저장 실패");
+
+        result.textContent = "✉️ 편지가 하늘로 배달되었어요!";
+        form.reset();
+      } catch(err) {
+        console.error(err);
+        result.textContent = "저장 실패. 잠시 후 다시 시도해주세요.";
+      }
+    });
+  </script>
+</body>
+</html>
