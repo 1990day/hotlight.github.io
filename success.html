@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>✉️ 편지가 하늘로 배달되었어요!</title>
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #fff8fb 0%, #ffe9f3 100%);
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  color: #444;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* 중앙 컨테이너 */
+.container {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 편지봉투 */
+.envelope {
+  width: 120px;
+  height: 80px;
+  background: linear-gradient(145deg, #ffd8ea, #ffc9e3);
+  border-radius: 8px;
+  position: relative;
+  animation: flyUp 3s ease-in-out forwards;
+  box-shadow: 0 6px 20px rgba(255, 150, 200, 0.3);
+}
+
+/* 봉투 덮개 */
+.envelope::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+  border-bottom: 40px solid #ffaed0;
+}
+
+/* 반짝이 */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkle 2s infinite ease-in-out;
+}
+
+/* 반짝이 위치 여러 개 */
+.sparkle:nth-child(1) { top: 50%; left: 40%; animation-delay: 0s; }
+.sparkle:nth-child(2) { top: 40%; left: 55%; animation-delay: 0.3s; }
+.sparkle:nth-child(3) { top: 60%; left: 45%; animation-delay: 0.6s; }
+.sparkle:nth-child(4) { top: 45%; left: 60%; animation-delay: 0.9s; }
+
+@keyframes flyUp {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  50% { transform: translateY(-100px) scale(1.05); opacity: 1; }
+  100% { transform: translateY(-300px) scale(0.9); opacity: 0; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.6); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* 텍스트 */
+h1 {
+  margin-top: 30px;
+  color: #ff6da8;
+  font-size: 24px;
+  text-shadow: 0 1px 2px rgba(255, 180, 200, 0.5);
+  animation: fadeIn 2.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 돌아가기 버튼 */
+button {
+  margin-top: 40px;
+  background: linear-gradient(135deg, #ffd9ec, #ffc9e3);
+  border: none;
+  border-radius: 16px;
+  padding: 12px 24px;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 150, 200, 0.3);
+  transition: 0.3s;
+}
+button:hover {
+  transform: scale(0.97);
+  background: linear-gradient(135deg, #ffbcd9, #ffa8c8);
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="envelope">
+      <div class="sparkle"></div>
+      <div class="sparkle"></div>
+      <div class="sparkle"></div>
+      <div class="sparkle"></div>
+    </div>
+    <h1>✉️ 편지가 하늘로 배달되었어요!</h1>
+    <button onclick="location.href='index.html'">홈으로 돌아가기</button>
+  </div>
+</body>
+</html>

@@ -297,41 +297,45 @@
   </div>
 
   <script>
-    function toggleMenu() {
-      const sidebar = document.getElementById("sidebar");
-      sidebar.style.display = sidebar.style.display === "flex" ? "none" : "flex";
+   function toggleMenu() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.style.display = sidebar.style.display === "flex" ? "none" : "flex";
+  }
+
+  const form = document.getElementById('letterForm');
+  const result = document.getElementById('result');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const payload = {
+      ownerName: document.getElementById('ownerName').value.trim(),
+      petName: document.getElementById('petName').value.trim(),
+      petType: document.getElementById('petType').value,
+      email: document.getElementById('email').value.trim(),
+      paperId: document.querySelector('input[name="paperId"]:checked').value,
+      message: document.getElementById('message').value.trim()
+    };
+
+    try {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbxOmmAhrsXRSWb4bqqPd8fzJcJgMY5Iqq8aPAhqrlklxegRiv7u9nx6EUDJeIxnIndt/exec", {
+        method: "POST",
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (!data.ok) throw new Error("저장 실패");
+
+      // 성공 처리
+      form.reset();
+      setTimeout(() => {
+        window.location.href = "success.html";
+      }, 500);
+
+    } catch (err) {
+      console.error(err);
+      result.textContent = "저장 실패. 잠시 후 다시 시도해주세요.";
     }
-
-    const form = document.getElementById('letterForm');
-    const result = document.getElementById('result');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-         const payload = {
-        ownerName: document.getElementById('ownerName').value.trim(),
-        petName: document.getElementById('petName').value.trim(),
-        petType: document.getElementById('petType').value,
-        email: document.getElementById('email').value.trim(),
-        paperId: document.querySelector('input[name="paperId"]:checked').value,
-        message: document.getElementById('message').value.trim()
-      };
-
-      try {
-        const res = await fetch("https://script.google.com/macros/s/AKfycbxOmmAhrsXRSWb4bqqPd8fzJcJgMY5Iqq8aPAhqrlklxegRiv7u9nx6EUDJeIxnIndt/exec", {
-          method: "POST",
-          body: JSON.stringify(payload)
-        });
-        const data = await res.json();
-        if (!data.ok) throw new Error("저장 실패");
-
-        result.textContent = "✉️ 편지가 하늘로 배달되었어요!";
-        form.reset();
-      } catch(err) {
-        console.error(err);
-        result.textContent = "저장 실패. 잠시 후 다시 시도해주세요.";
-      }
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
